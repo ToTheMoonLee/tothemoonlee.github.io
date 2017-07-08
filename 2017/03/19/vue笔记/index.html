@@ -108,7 +108,7 @@ v-model=”message”实现双向绑定
 
 
 1234567891011121314151617181920212">
-<meta property="og:updated_time" content="2017-07-08T01:56:32.421Z">
+<meta property="og:updated_time" content="2017-07-08T01:57:14.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue笔记">
 <meta name="twitter:description" content="各种指令集
@@ -363,7 +363,7 @@ v-model=”message”实现双向绑定
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">var app = new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue!&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;									直接绑定message</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;div id=&quot;app-2&quot;&gt;</div><div class="line">  &lt;span v-bind:title=&quot;message&quot;&gt;					v-bind:title 鼠标停留绑定的message</div><div class="line">    鼠标悬停几秒钟查看此处动态绑定的提示信息！</div><div class="line">  &lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">var app3 = new Vue(&#123;</div><div class="line">  el: &apos;#app-3&apos;,</div><div class="line">  data: &#123;</div><div class="line">    seen: true</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">&lt;div id=&quot;app-3&quot;&gt;</div><div class="line">  &lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;				v-if=&quot;seen&quot; 通过条件显示message</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;div id=&quot;app-4&quot;&gt;</div><div class="line">  &lt;ol&gt;</div><div class="line">    &lt;li v-for=&quot;todo in todos&quot;&gt;					v-for=&quot;todo in todos&quot; 循环控制dom结构</div><div class="line">      &#123;&#123; todo.text &#125;&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ol&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">var app4 = new Vue(&#123;</div><div class="line">  el: &apos;#app-4&apos;,</div><div class="line">  data: &#123;</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;学习 JavaScript&apos; &#125;,</div><div class="line">      &#123; text: &apos;学习 Vue&apos; &#125;,</div><div class="line">      &#123; text: &apos;整个牛项目&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">&lt;div id=&quot;app-5&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;button v-on:click=&quot;reverseMessage&quot;&gt;逆转消息&lt;/button&gt;		v-on:click 绑定点击事件</div><div class="line">&lt;/div&gt;</div><div class="line">var app5 = new Vue(&#123;</div><div class="line">  el: &apos;#app-5&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue.js!&apos;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    reverseMessage: function () &#123;</div><div class="line">      this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">&lt;div id=&quot;app-6&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;input v-model=&quot;message&quot;&gt;			        v-model=&quot;message&quot;实现双向绑定</div><div class="line">&lt;/div&gt;</div><div class="line">var app6 = new Vue(&#123;</div><div class="line">  el: &apos;#app-6&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue!&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>绑定文本，使用双大括号</p>
+<h3 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h3><h5 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h5><p>绑定文本，使用双大括号</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span&gt;Message: &#123;&#123; msg &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
 <p>无论何时，绑定的数据对象上 msg 属性发生了改变，插值处的内容都会更新。通过v-once指令，可一次性插值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;span v-once&gt;This will never change: &#123;&#123; msg &#125;&#125;&lt;/span&gt;</div></pre></td></tr></table></figure>
@@ -376,7 +376,19 @@ v-model=”message”实现双向绑定
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;p v-if=&quot;seen&quot;&gt;&#123;&#123;message ? &quot;需要逆转的消息&quot;:&quot;不需要逆转的消息&quot;&#125;&#125;&lt;/p&gt;</div><div class="line">var vm = new Vue(&#123;</div><div class="line">	el: &apos;#apps&apos;,</div><div class="line">	data: &#123;</div><div class="line">		message: false,</div><div class="line">		seen:true</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-
+<h5 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h5><blockquote>
+<p>指令（Directives）是带有 v- 前缀的特殊属性。指令属性的值预期是单一 JavaScript 表达式（除了 v-for，之后再讨论）。指令的职责就是当其表达式的值改变时相应地将某些行为应用到 DOM 上，例如：v-if 指令将根据表达式 seen 的值的真假来移除/插入  元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p v-if=&quot;seen&quot;&gt;Now you see me&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ol>
+<li>参数<br>一些指令能接受一个“参数”，在指令后以冒号指明<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a v-bind:href=&quot;url&quot;&gt;&lt;/a&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>另一个例子是 v-on 指令，它用于监听 DOM 事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a v-on:click=&quot;doSomething&quot;&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>修饰符<br>修饰符（Modifiers）是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;&#123; message | capitalize &#125;&#125;</div><div class="line">可以串联写法：</div><div class="line">&#123;&#123; message | filterA | filterB &#125;&#125;</div><div class="line">&lt;!-- in v-bind --&gt;</div><div class="line">&lt;div v-bind:id=&quot;rawId | formatId&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">//message作为capitalize的参数</div><div class="line">new Vue(&#123;</div><div class="line">  // ...</div><div class="line">  filters: &#123;</div><div class="line">    capitalize: function (value) &#123;</div><div class="line">      if (!value) return &apos;&apos;</div><div class="line">      value = value.toString()</div><div class="line">      return value.charAt(0).toUpperCase() + value.slice(1)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -463,8 +475,17 @@ v-model=”message”实现双向绑定
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://or3r57zhy.bkt.clouddn.com/avatar.jpg"
@@ -513,6 +534,22 @@ v-model=”message”实现双向绑定
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板语法"><span class="nav-number">1.</span> <span class="nav-text">模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插值"><span class="nav-number">1.0.1.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指令"><span class="nav-number">1.0.2.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#过滤器"><span class="nav-number">1.0.3.</span> <span class="nav-text">过滤器</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
