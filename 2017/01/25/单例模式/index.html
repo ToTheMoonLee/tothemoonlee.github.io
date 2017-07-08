@@ -84,36 +84,16 @@
 
 
 
-<meta name="description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
-
-单例模式简介
-定义：确保一个类在内存中只有一个实例，而且自行实例化，并向整个系统提供这个实例。单例模式是应用最广的模式之一，同时也是最简单的一种设计模式，一般如果系统中创建某个对象比较消耗资源，且只有一个实例即可，这样使用单例是最合适的。
-
-单例模式使用场景
-常见某个">
+<meta name="description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单例模式">
 <meta property="og:url" content="http://yoursite.com/2017/01/25/单例模式/index.html">
 <meta property="og:site_name" content="MooNight">
-<meta property="og:description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
-
-单例模式简介
-定义：确保一个类在内存中只有一个实例，而且自行实例化，并向整个系统提供这个实例。单例模式是应用最广的模式之一，同时也是最简单的一种设计模式，一般如果系统中创建某个对象比较消耗资源，且只有一个实例即可，这样使用单例是最合适的。
-
-单例模式使用场景
-常见某个">
-<meta property="og:image" content="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg">
-<meta property="og:updated_time" content="2017-06-22T07:59:11.499Z">
+<meta property="og:description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
+<meta property="og:updated_time" content="2017-07-08T00:52:34.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
-
-单例模式简介
-定义：确保一个类在内存中只有一个实例，而且自行实例化，并向整个系统提供这个实例。单例模式是应用最广的模式之一，同时也是最简单的一种设计模式，一般如果系统中创建某个对象比较消耗资源，且只有一个实例即可，这样使用单例是最合适的。
-
-单例模式使用场景
-常见某个">
-<meta name="twitter:image" content="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg">
+<meta name="twitter:description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
 
 
 
@@ -345,43 +325,7 @@
       
 
       
-        <p>本文为<a href="https://item.jd.com/11793928.html#comment" target="_blank" rel="external">Android 源码设计模式解析与实战</a>一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。</p>
-<hr>
-<h3 id="单例模式简介"><a href="#单例模式简介" class="headerlink" title="单例模式简介"></a>单例模式简介</h3><blockquote>
-<p>定义：确保一个类在内存中只有一个实例，而且自行实例化，并向整个系统提供这个实例。单例模式是应用最广的模式之一，同时也是最简单的一种设计模式，一般如果系统中创建某个对象比较消耗资源，且只有一个实例即可，这样使用单例是最合适的。</p>
-</blockquote>
-<h3 id="单例模式使用场景"><a href="#单例模式使用场景" class="headerlink" title="单例模式使用场景"></a>单例模式使用场景</h3><blockquote>
-<p>常见某个对象比较消耗资源，或者要确保某个类有且只有一个实例，则要考虑使用单例模式。例如：创建某个对象，需要访问IO或者数据库资源等，则考虑使用单例模式。</p>
-</blockquote>
-<h3 id="单例模式UML"><a href="#单例模式UML" class="headerlink" title="单例模式UML"></a>单例模式UML</h3><p><img src="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg" alt="单例模式UML"><br>Client类为客户端，Singleton类为单例类，单例中一般要保证几点：</p>
-<ol>
-<li>构造方法私有化private；</li>
-<li>对外暴露静态方法获取单例对象；</li>
-<li>保证在多线程中也能保证只有一个单例对象；</li>
-<li>在反序列化中也能保证不会重新创建对象；</li>
-</ol>
-<p>以上几点是单例中的几个关键点，主要关键点是在多线程中要保证线程安全，确保对象只有一个。</p>
-<h3 id="单例模式示例"><a href="#单例模式示例" class="headerlink" title="单例模式示例"></a>单例模式示例</h3><p>单例模式简单示例，一个公司中只有一个老板，可以有多个经理，多个员工。公司中的老板实例化一次就要去工商注册一下公司，这是一个很耗时的操作，所以我们应该保证老板类是单例的，在内存中只存在一个Boss实例即可，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">// 员工类</div><div class="line">public class Employee &#123;</div><div class="line">    public void work() &#123;</div><div class="line">        // 普通员工的方法</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 经理类</div><div class="line">public class PM extends Employee &#123;</div><div class="line">    @Override</div><div class="line">    public void work() &#123;</div><div class="line">        // 经理类的工作方法</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 老板类，使用单例模式保证在内存中只有一个实例，本例中使用的饿汉式</div><div class="line">public class Boss extends Employee &#123;</div><div class="line"></div><div class="line">	private static Boss mInstance = new Boss();</div><div class="line"></div><div class="line">	private Boss() &#123;</div><div class="line">		register();  // 注册公司是一个耗时操作</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public static Boss getInstance() &#123;</div><div class="line">		return mInstance;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public void work() &#123;</div><div class="line">		// 老板的干活方法</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">// 公司类，用来模拟添加员工</div><div class="line">public class Company &#123;</div><div class="line"></div><div class="line">    private List&lt;Employee&gt; mEmployees = new ArrayList&lt;Employee&gt;();</div><div class="line"></div><div class="line">    public void addEmployee(Employee employee) &#123;</div><div class="line">        mEmployees.add(employee);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void showEmployee() &#123;</div><div class="line">        for (Employee employee : mEmployees) &#123;</div><div class="line">            System.out.println(&quot;employee : &quot; + employee.toString());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Client &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Company company = new Company();</div><div class="line">		company.addEmployee(Boss.getInstance());</div><div class="line">		company.addEmployee(Boss.getInstance());</div><div class="line">		company.addEmployee(new PM());</div><div class="line">		company.addEmployee(new PM());</div><div class="line">		company.addEmployee(new Employee());</div><div class="line">		company.addEmployee(new Employee());</div><div class="line">		company.showEmployee();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上述代码用于模拟公司中添加员工，同时只有一个boss实例，代码运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">employee : Boss@15db9742</div><div class="line">employee : Boss@15db9742</div><div class="line">employee : PM@6d06d69c</div><div class="line">employee : PM@7852e922</div><div class="line">employee : Employee@4e25154f</div><div class="line">employee : Employee@70dea4e</div></pre></td></tr></table></figure></p>
-<p>可以看出Boss类为同一个实例，只能通过Boss类对外暴露的静态方法实例化。</p>
-<h3 id="单例模式的几种实现方式"><a href="#单例模式的几种实现方式" class="headerlink" title="单例模式的几种实现方式"></a>单例模式的几种实现方式</h3><h5 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h5><p>饿汉式在声明静态成员变量时就已经实例化了对象，是线程安全的，不必考虑多线程的情况，但是由于在类加载的时候就实例化了，会占一定的内存，有效率问题。代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">	private static Singleton mInstance = new Singleton();</div><div class="line">	private Singleton() &#123;&#125;</div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		return mInstance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h5 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h5><p>懒汉式相对于饿汉式来说，在调用getInstance方法的时候才会实例化对象，同时为了保证线程安全，可以在getInstance方法上加上synchronized关键字，这样虽然保证了线程安全，但是由于每次调用getInstance方法都进行同步，造成了不必要的同步开销，影响效率。一般情况下，这种形式不推荐使用，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">	private static Singleton mInstance;</div><div class="line">	private Singleton()&#123;&#125;</div><div class="line">	private static synchronized Singleton getInstance() &#123;</div><div class="line">		if(mInstance == null) &#123;</div><div class="line">			mInstance =  new Singleton();</div><div class="line">		&#125;</div><div class="line">		return mInstance;	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h5 id="Double-Check-Lock-DCL-实现单例"><a href="#Double-Check-Lock-DCL-实现单例" class="headerlink" title="Double Check Lock(DCL)实现单例"></a>Double Check Lock(DCL)实现单例</h5><p>这种单例实现方法首先先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class Singleton&#123;</div><div class="line">	private static Singleton mInstance;</div><div class="line">	private Singleton()&#123;&#125;</div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (mInstance == null) &#123;</div><div class="line">			synchronized(Singleton.class)&#123;</div><div class="line">				if (mInstance == null) &#123;</div><div class="line">					mInstance = new Singleton();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这种实现方式，通过双重判空，可以避免每次调用getInstance的时候进行不必要的同步，第一层判空来避免不必要的同步，第二层判断来进行null的状态下创建对象，对于复杂的创建对象的场景，第一次创建对象时，反应稍慢，对象创建成功后就不需要再进行同步了。但是在java1.5之前的Java内存模型中 ，创建对象的操作<code>mInstance = new Instance()</code>会进行一下过程：</p>
-<ol>
-<li>给Singleton分配实例</li>
-<li>调用SingleInstance()构造方法，初始化成员变量</li>
-<li>将mInstance指向对象分配的内存空间(此时mInstance就不为空了)</li>
-</ol>
-<p>由于Java编译器是允许处理器乱序执行的，所以当线程A执行<code>mInstance = new Singleton()</code>时，可能会以1-3-2的顺序执行，如果执行到3以后，这是刚好cpu切换到了线程B，这是由于mInstance已经不为空了，所以就将mInstance取走了，但是此时并未初始化完成，所以造成了DCL失效问题，但是除非并发场景很复杂或者使用的JDK低于JDK6，否则这种方式一般是可以满足需求的。是一种常用的方式。</p>
-<h5 id="静态内部类单例模式"><a href="#静态内部类单例模式" class="headerlink" title="静态内部类单例模式"></a>静态内部类单例模式</h5><p>DCL方式基本已经可以满足需求了，但是还是可能会出现失效问题，但是静态内部类的方式可以避免这种问题，而且可以保证线程安全的单例。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">	private Singleton()&#123;&#125;</div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		return SingletonHolder.sInstance;</div><div class="line">	&#125;</div><div class="line">	private static class SingletonHolder &#123;</div><div class="line">		private static final Singleton sInstance = new Singleton();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这种方式只有在调用getInstance方法的时候才会初始化Singleton对象，同时可以保证线程安全，<strong>推荐使用这种方法</strong>。</p>
-<h5 id="枚举的方式"><a href="#枚举的方式" class="headerlink" title="枚举的方式"></a>枚举的方式</h5><p>好吧，这个超级无敌之简单的单例实现方式终于来了，那就是枚举了，使用枚举不仅可以保证线程安全，而且在反序列化时也不会重新生成新的对象。对于枚举可能大家用的都不多，尤其是对于安卓来说(安卓官方并不推荐使用枚举),但是可以把枚举理解成是一个类，可以有自己的方法，字段等。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public enum Singleton &#123;</div><div class="line"></div><div class="line">	INSTANCE;</div><div class="line">	public void work() &#123;</div><div class="line">		System.out.println(&quot;enum singleton test&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">// 客户端</div><div class="line">public class Client &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Singleton.INSTANCE.work();  // 初始化Singleton并调用work方法</div><div class="line">		List&lt;Singleton&gt; list = new ArrayList&lt;Singleton&gt;();</div><div class="line">		list.add(Singleton.INSTANCE);</div><div class="line">		list.add(Singleton.INSTANCE);</div><div class="line">		for(Singleton s : list) &#123;</div><div class="line">			System.out.println(s);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上述代码中打印如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">enum singleton test</div><div class="line">INSTANCE</div><div class="line">INSTANCE</div></pre></td></tr></table></figure></p>
-<p>使用枚举的方式集合了上述几种方式的优点，同时还能保证反序列化时的单例，最关键的是写法及其简单，不过安卓中官方不推荐使用枚举，但是这种方式确实简单，以后可以多多在项目中使用。</p>
-<p>以上几种方式是常见的几个单例的实现，推荐优先使用静态内部类的方式，DCL与枚举的方式也推荐使用，下面是使用容器类来存储单例对象，方便统一管理单例类，这种不算是单例的实现，只是对单例对象的统一管理。</p>
-<h5 id="使用容器实现单例模式"><a href="#使用容器实现单例模式" class="headerlink" title="使用容器实现单例模式"></a>使用容器实现单例模式</h5><p>使用容器对单例对象进行统一管理，在程序初始化时，将需要的单例类存储在map集合中，当使用时，直接从map集合中取出，便于管理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public class SingletonRegister &#123;</div><div class="line"></div><div class="line">	private static HashMap&lt;String, Object&gt; sMap = new HashMap&lt;String, Object&gt;();</div><div class="line">	</div><div class="line">	private SingletonRegister()&#123;&#125;</div><div class="line">	</div><div class="line">	public static void registerSingleton(String key ,Object obj) &#123;</div><div class="line">		if (!sMap.containsKey(key)) &#123;</div><div class="line">			sMap.put(key, obj);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static Object getSingleton(String key)&#123;</div><div class="line">		return sMap.get(key);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Client &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		SingletonRegister.registerSingleton(&quot;boss&quot;, Boss.getInstance());</div><div class="line">		SingletonRegister.registerSingleton(&quot;INSTANCE&quot;, Singleton.INSTANCE);</div><div class="line">		System.out.println(&quot;boss : &quot; + SingletonRegister.getSingleton(&quot;boss&quot;) +&quot;----- INSTANCE : &quot; + </div><div class="line">		SingletonRegister.getSingleton(&quot;INSTANCE&quot;));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+        
       
     </div>
 
@@ -472,17 +416,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://or3r57zhy.bkt.clouddn.com/avatar.jpg"
@@ -495,7 +430,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -531,22 +466,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式简介"><span class="nav-number">1.</span> <span class="nav-text">单例模式简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式使用场景"><span class="nav-number">2.</span> <span class="nav-text">单例模式使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式UML"><span class="nav-number">3.</span> <span class="nav-text">单例模式UML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式示例"><span class="nav-number">4.</span> <span class="nav-text">单例模式示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式的几种实现方式"><span class="nav-number">5.</span> <span class="nav-text">单例模式的几种实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#饿汉式"><span class="nav-number">5.0.1.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#懒汉式"><span class="nav-number">5.0.2.</span> <span class="nav-text">懒汉式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Double-Check-Lock-DCL-实现单例"><span class="nav-number">5.0.3.</span> <span class="nav-text">Double Check Lock(DCL)实现单例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#静态内部类单例模式"><span class="nav-number">5.0.4.</span> <span class="nav-text">静态内部类单例模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#枚举的方式"><span class="nav-number">5.0.5.</span> <span class="nav-text">枚举的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用容器实现单例模式"><span class="nav-number">5.0.6.</span> <span class="nav-text">使用容器实现单例模式</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
