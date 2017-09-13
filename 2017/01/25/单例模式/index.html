@@ -84,16 +84,27 @@
 
 
 
-<meta name="description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
+<meta name="description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
+
+单例模式简介
+定义：确保某个类中只有一个实例，而且自行实例化并向整个系统提供这个实例。这个模式的特点在于单例对象的类必须保证只有一个实例存在，这样有利于我们协调系统的整体行为，而这些单例类的实例化过程往往是十分复杂的，比如android源码中WindowsManage">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单例模式">
 <meta property="og:url" content="http://yoursite.com/2017/01/25/单例模式/index.html">
 <meta property="og:site_name" content="MooNight">
-<meta property="og:description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
-<meta property="og:updated_time" content="2017-07-08T00:52:34.339Z">
+<meta property="og:description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
+
+单例模式简介
+定义：确保某个类中只有一个实例，而且自行实例化并向整个系统提供这个实例。这个模式的特点在于单例对象的类必须保证只有一个实例存在，这样有利于我们协调系统的整体行为，而这些单例类的实例化过程往往是十分复杂的，比如android源码中WindowsManage">
+<meta property="og:image" content="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg">
+<meta property="og:updated_time" content="2017-07-13T08:49:16.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道">
+<meta name="twitter:description" content="本文为Android 源码设计模式解析与实战一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。
+
+单例模式简介
+定义：确保某个类中只有一个实例，而且自行实例化并向整个系统提供这个实例。这个模式的特点在于单例对象的类必须保证只有一个实例存在，这样有利于我们协调系统的整体行为，而这些单例类的实例化过程往往是十分复杂的，比如android源码中WindowsManage">
+<meta name="twitter:image" content="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg">
 
 
 
@@ -325,7 +336,30 @@
       
 
       
-        
+        <p>本文为<a href="https://item.jd.com/11793928.html#comment" target="_blank" rel="external">Android 源码设计模式解析与实战</a>一书中的个人理解及总结，如有兴趣请购买正版书籍详细阅读。如有侵权请联系本人进行删除。</p>
+<hr>
+<h3 id="单例模式简介"><a href="#单例模式简介" class="headerlink" title="单例模式简介"></a>单例模式简介</h3><blockquote>
+<p>定义：确保某个类中只有一个实例，而且自行实例化并向整个系统提供这个实例。这个模式的特点在于单例对象的类必须保证只有一个实例存在，这样有利于我们协调系统的整体行为，而这些单例类的实例化过程往往是十分复杂的，比如android源码中WindowsManagerService、ActivityManagerService、LayoutInflater等，这些类都会在合适的时候以单例的形式注册到系统中，从而方便统一管理，对于开发者来说只需要通过context的getSystemService(String name)就可以获取到这些常用的Service实例，十分方便。</p>
+</blockquote>
+<h3 id="单例模式使用场景"><a href="#单例模式使用场景" class="headerlink" title="单例模式使用场景"></a>单例模式使用场景</h3><blockquote>
+<p>当某个类实例化过程需要消耗过多的资源，或者某种类型对象只应该有一个时，就应该考虑使用这种模式。比如某个类实例化需要进行IO或者访问数据库等。</p>
+</blockquote>
+<h3 id="单例模式UML"><a href="#单例模式UML" class="headerlink" title="单例模式UML"></a>单例模式UML</h3><p><img src="http://or3r57zhy.bkt.clouddn.com/Singleton.jpg" alt="单例模式UML"></p>
+<p>其中：<br>Client:是高层次的调用端<br>SingleTon:单例类<br>实现单例模式有以下几个关键的地方：</p>
+<ol>
+<li>构造方法应该私有化，不对外开放</li>
+<li>通过一个静态方法或者枚举对外暴露单例类对象</li>
+<li>一定要保证在多线程的情况下，仍然保证单例</li>
+<li>在对象反序列化时也保证单例</li>
+</ol>
+<p>其中私有化构造方法是使得类不能通过new的方式来实例化对象，客户端可以通过静态的方法获取到这个唯一的单例对象，而且要保证获取单例对象的过程是线程安全的，这点是比较困难的。</p>
+<h3 id="单例模式示例"><a href="#单例模式示例" class="headerlink" title="单例模式示例"></a>单例模式示例</h3><p>下面拿个简单的例子做个介绍，比如一个公司，公司的老板有且只有一个，公司可以有很多经理和员工，那么就可以对老板类使用单例模式，代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class Employee &#123;			// 普通员工</div><div class="line">    public void work() &#123;</div><div class="line">        // 普通员工的方法</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 饿汉式单例类</div><div class="line">public class Boss extends Employee &#123;		// 老板</div><div class="line">	private static Boss mInstance = new Boss();</div><div class="line">	private Boss() &#123;&#125;	// 私有化构造方法</div><div class="line">	public static Boss getInstance() &#123;</div><div class="line">		return mInstance;</div><div class="line">	&#125;</div><div class="line">	@Override</div><div class="line">	public void work() &#123;</div><div class="line">		// 老板的干活方法</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class PM extends Employee &#123;			// 经理</div><div class="line">    @Override</div><div class="line">    public void work() &#123;</div><div class="line">        // 经理类的工作方法</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Client &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Company company = new Company();</div><div class="line">		company.addEmployee(Boss.getInstance());</div><div class="line">		company.addEmployee(Boss.getInstance());</div><div class="line">		company.addEmployee(new PM());</div><div class="line">		company.addEmployee(new PM());</div><div class="line">		company.addEmployee(new Employee());</div><div class="line">		company.addEmployee(new Employee());</div><div class="line">		company.showEmployee();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出的结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">employee : Boss@15db9742</div><div class="line">employee : Boss@15db9742</div><div class="line">employee : PM@6d06d69c</div><div class="line">employee : PM@7852e922</div><div class="line">employee : Employee@4e25154f</div><div class="line">employee : Employee@70dea4e</div></pre></td></tr></table></figure></p>
+<p>从上述结果中可以看出，Boss类只有一个实例，内存地址是一样的，因为Boss类的构造方法是私有化的，不能通过new的方式去新建对象，只能通过Boss.getInstance()方法去获取唯一的实例，而PM和Employee则不是单例的。</p>
+<h3 id="单例模式的几种实现方式"><a href="#单例模式的几种实现方式" class="headerlink" title="单例模式的几种实现方式"></a>单例模式的几种实现方式</h3><h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><p>在上面的Boss类中，在声明静态成员变量的时候就已经初始化了，称之为饿汉式。懒汉式方式如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class SingleTon &#123;</div><div class="line">	private static SingleTon mInstance;</div><div class="line">	private SingleTon() &#123;&#125;</div><div class="line">	public static synchronized SingleTon getInstance() &#123;</div><div class="line">		if(mInstance == null) &#123;</div><div class="line">			mInstance = new SingleTon();</div><div class="line">		&#125;</div><div class="line">		return mInstance;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>懒汉式方式在getInstance的时候才会做初始化的操作，在一定程度上节约了资源，可是由于getInstance进行了同步，所以每次调用getInstance都会进行同步，造成了不必要的同步，<strong>所以这种方式极其不推荐</strong>。</p>
+<h4 id="Double-Check-Lock-DCL-双重判断锁方式"><a href="#Double-Check-Lock-DCL-双重判断锁方式" class="headerlink" title="Double Check Lock(DCL)双重判断锁方式"></a>Double Check Lock(DCL)双重判断锁方式</h4><p>DCL的方式是在懒汉式的基础上进行了优化，既使得调用getInstance的时候才进行初始化，而且避免了不必要的同步，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class SingleTon &#123;</div><div class="line">	private static SingleTon mInstance;</div><div class="line">	private SingleTon() &#123;&#125;</div><div class="line">	public static SingleTon getInstance() &#123;</div><div class="line">		if(mInstance == null) &#123;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -357,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/24/面向对象六大原则/" rel="next" title="面向对象六大原则">
-                <i class="fa fa-chevron-left"></i> 面向对象六大原则
+              <a href="/2017/01/25/原型模式/" rel="next" title="单例模式">
+                <i class="fa fa-chevron-left"></i> 单例模式
               </a>
             
           </div>
@@ -416,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://or3r57zhy.bkt.clouddn.com/avatar.jpg"
@@ -430,7 +473,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -441,7 +484,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -466,6 +509,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式简介"><span class="nav-number">1.</span> <span class="nav-text">单例模式简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式使用场景"><span class="nav-number">2.</span> <span class="nav-text">单例模式使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式UML"><span class="nav-number">3.</span> <span class="nav-text">单例模式UML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式示例"><span class="nav-number">4.</span> <span class="nav-text">单例模式示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式的几种实现方式"><span class="nav-number">5.</span> <span class="nav-text">单例模式的几种实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#懒汉式"><span class="nav-number">5.1.</span> <span class="nav-text">懒汉式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Double-Check-Lock-DCL-双重判断锁方式"><span class="nav-number">5.2.</span> <span class="nav-text">Double Check Lock(DCL)双重判断锁方式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

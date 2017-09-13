@@ -1,0 +1,684 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CustomView," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="事情是这样的0-0，这个是我的一个好基友Anonymous___童鞋发给我的一个效果图，主要是练手一下最近研究的自定义view的各种技能，于是就搞了一下，最终实现其实很简单，但是中间也绕了几次弯，先上图，这是原图效果：下面是代码实现效果：可能在细节方面有些差异，但是重点是实现方式，是吧- -。首先分析一下动画的变化过程，姑且把它看成是一段圆弧的变化吧，一共可以分为一下几点：
+
+颜色变化，颜色会从青">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次自定义Loading的心里路程">
+<meta property="og:url" content="http://yoursite.com/2017/08/19/LoadingView/index.html">
+<meta property="og:site_name" content="MooNight">
+<meta property="og:description" content="事情是这样的0-0，这个是我的一个好基友Anonymous___童鞋发给我的一个效果图，主要是练手一下最近研究的自定义view的各种技能，于是就搞了一下，最终实现其实很简单，但是中间也绕了几次弯，先上图，这是原图效果：下面是代码实现效果：可能在细节方面有些差异，但是重点是实现方式，是吧- -。首先分析一下动画的变化过程，姑且把它看成是一段圆弧的变化吧，一共可以分为一下几点：
+
+颜色变化，颜色会从青">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-d3e4354bbf2070dc.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-c247e90c045f3971.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-d83f4f4f28a3bbb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-4eaef58d9b8604ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-cd357e987fc71044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-44db27374a30d31b.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3385056-4b0d21205acc16b8.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-09-13T02:56:47.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次自定义Loading的心里路程">
+<meta name="twitter:description" content="事情是这样的0-0，这个是我的一个好基友Anonymous___童鞋发给我的一个效果图，主要是练手一下最近研究的自定义view的各种技能，于是就搞了一下，最终实现其实很简单，但是中间也绕了几次弯，先上图，这是原图效果：下面是代码实现效果：可能在细节方面有些差异，但是重点是实现方式，是吧- -。首先分析一下动画的变化过程，姑且把它看成是一段圆弧的变化吧，一共可以分为一下几点：
+
+颜色变化，颜色会从青">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3385056-d3e4354bbf2070dc.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/19/LoadingView/"/>
+
+
+
+
+
+  <title> 记一次自定义Loading的心里路程 | MooNight </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">MooNight</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/LoadingView/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="MooNight">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://or3r57zhy.bkt.clouddn.com/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="MooNight">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="MooNight" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记一次自定义Loading的心里路程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-19T18:00:00+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>事情是这样的0-0，这个是我的一个好基友<a href="http://www.jianshu.com/u/975e915e131b" target="_blank" rel="external">Anonymous___</a>童鞋发给我的一个效果图，主要是练手一下最近研究的自定义view的各种技能，于是就搞了一下，最终实现其实很简单，但是中间也绕了几次弯，先上图，这是原图效果：<br><img src="http://upload-images.jianshu.io/upload_images/3385056-d3e4354bbf2070dc.gif?imageMogr2/auto-orient/strip" alt="preloader.gif"><br>下面是代码实现效果：<br><img src="http://upload-images.jianshu.io/upload_images/3385056-c247e90c045f3971.gif?imageMogr2/auto-orient/strip" alt="loading.gif"><br>可能在细节方面有些差异，但是重点是实现方式，是吧- -。<br>首先分析一下动画的变化过程，姑且把它看成是一段圆弧的变化吧，一共可以分为一下几点：</p>
+<ol>
+<li>颜色变化，颜色会从青色变为蓝色；</li>
+<li>圆弧线条粗细的变化，刚开始是整个填充的，然后旋转一小节之后，线条开始变细；</li>
+<li>圆弧旋转一周之后，长度开始缩小，并在最后延长一部分</li>
+</ol>
+<p>好了，动画分析的差不多了，那么就开始实现吧。</p>
+<h5 id="第一步，画圆弧"><a href="#第一步，画圆弧" class="headerlink" title="第一步，画圆弧"></a>第一步，画圆弧</h5><p>图中的圆弧大概长这个样子吧</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3385056-d83f4f4f28a3bbb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="圆弧.png"></p>
+<p>这个简单，直接使用一个Path类的addArc()，然后用Canvas画出来就可以了，可是怎么画出圆弧的轮廓呢，这个当然你可以画两个圆弧加两个半圆去实现，但是太麻烦了，其实在Paint中有一个方法<a href="https://developer.android.com/reference/android/graphics/Paint.html" target="_blank" rel="external">getFillPath (Path src, Path dst)</a>专门可以获取到Canvas画出的path的实际的path，但是使用这个方法，记得<strong>关闭硬件加速！！！</strong>，关闭硬件加速请参考这里<strong><a href="https://github.com/GcsSloop/AndroidNote/issues/7" target="_blank" rel="external">Android如何关闭硬件加速</a></strong>，关于Paint的Api详解可以到<a href="http://hencoder.com/ui-1-2/" target="_blank" rel="external">扔物线大大的HenCoder</a>中详细了解，我就不做过多的赘述了。效果大概就是下面这个样子，第一个图是原Path画出的圆弧，第二个是获取到的轮廓：<br><img src="http://upload-images.jianshu.io/upload_images/3385056-4eaef58d9b8604ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="arc_src.png"><br><img src="http://upload-images.jianshu.io/upload_images/3385056-cd357e987fc71044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="arc_dst.png"></p>
+<h5 id="第二步，执行动画"><a href="#第二步，执行动画" class="headerlink" title="第二步，执行动画"></a>第二步，执行动画</h5><p>这里我大概想到了两种方式：</p>
+<h6 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h6><p>直接使用属性动画（ObjectAnimator），去动态的改变自定义View的属性值，比如我们可以在自定义View中定义一个变量<code>progessColor</code>来记录颜色，并给这个变量定义setter方法，在setter方法中调用invalidate方法，这样就可以通过ObjectAnimator来动态的改变<code>progessColor</code>的值，来一直刷新绘制方法onDraw，从而让view“动”起来；同样的方式可以改变绘制圆弧的起始角度<code>startAngle</code>和绘制View的线条粗细<code>progessWidth</code>，然后同时执行这三个动画，就可以让圆弧转起来了，不过这只是前半段动画，还有后半段动画，让圆弧的长度缩小并在最后突出一小截，这个问题可以给ObjectAnimator设置监听，在动画结束后，通过一个handler通知下一个动画执行，缩小圆弧长度可以控制绘制圆弧角度的<code>sweepAngle</code>属性，让其不断的减小即可，对属性动画不熟悉的同学，同样可以去看<a href="http://hencoder.com/ui-1-7/" target="_blank" rel="external">抛物线大大的HenCoder</a>,大致代码及效果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> public void setProgessColor(int progessColor) &#123;</div><div class="line">        this.progessColor = progessColor;</div><div class="line">        invalidate();</div><div class="line">&#125;</div><div class="line">... 省略部分代码 ...</div><div class="line">ObjectAnimator objectAnimator = ObjectAnimator.ofInt(this, &quot;progessColor&quot;, startColor, endColor);</div><div class="line">objectAnimator.setEvaluator(new ArgbEvaluator());          // 使用ARGB求值器来改变颜色</div><div class="line">objectAnimator.setDuration(2000);</div><div class="line"></div><div class="line">ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(this, &quot;progessWidth&quot;, startWidth, endWidth);</div><div class="line">objectAnimator1.setDuration(2000);</div><div class="line"></div><div class="line">ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(this, &quot;startAngle&quot;, startAngle, startAngle + 360);</div><div class="line">objectAnimator2.setDuration(2000);</div><div class="line"></div><div class="line">objectAnimator3 = objectAnimator.ofFloat(this, &quot;sweepAngle&quot;, sweepAngle - 2, 10, 0, -10); // 需要在最后突出一截</div><div class="line">objectAnimator3.setDuration(3000);</div><div class="line"></div><div class="line">AnimatorSet animatorSet = new AnimatorSet();</div><div class="line">animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2);      // 使用AnimatorSet同时执行动画</div><div class="line">animatorSet.start();</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3385056-44db27374a30d31b.gif?imageMogr2/auto-orient/strip" alt="loading1.gif"><br>这种方式大家应该也看出来了，有几个缺陷，第一，原动画的弧线是运动一段时间，线的宽度才开始减小的，而这个动画直接就开始减小；第二，中间动画衔接的时候会有一小点停顿的状态；第三，这个动画得倒回去啊。当然使用<code>setRepeatMode(ValueAnimator.REVERSE) 和 setRepeatCount(ValueAnimator.INFINITE)</code>Api可以让动画倒回去，但是还需要控制动画执行顺序，太麻烦，遂弃之。</p>
+<h6 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h6><p>既然使用<code>ObjectAnimator</code>不好使，有限制，那么我们就换一个他的爹地，更加灵活的<code>ValueAnimator</code>，它的玩法非常简单，只需要调用<code>ofFloat()</code>，然后再添加<code>addUpdateListener()</code>监听,在update的过程中，不断的根据自己设计的算法改变对应的值就ok了，当然关于颜色的变化还是需要使用ObjectAnimator的方法，因为颜色的变化需要ArgbEvaluator求值器来计算，具体的算法在下面的代码里做解释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);</div><div class="line">// 设置update监听，并在属性更新时写自己的算法</div><div class="line">valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123; </div><div class="line">    @Override</div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;</div><div class="line">        // 获取到当前动画的完成度，取值为0~1</div><div class="line">        float animatedFraction = animation.getAnimatedFraction();         </div><div class="line">        // 用来计算线条宽度的变化，前动画的前0.2不改变初始线条宽度，从0.2~0.9，动态的将线条宽度变为最终的宽的endWidth</div><div class="line">        // 0.9~1阶段，宽度始终为最终宽度endWidth</div><div class="line">        progessWidth = startWidth - ((animatedFraction - 0.2f) / 0.7f) * startWidth;       </div><div class="line">        // 前0.2的变化会进入这个判断</div><div class="line">        if (progessWidth &gt;= startWidth) &#123;    </div><div class="line">            progessWidth = startWidth;</div><div class="line">        &#125;</div><div class="line">        // 0.9~1时会进这个判断</div><div class="line">        if (progessWidth &lt;= endWidth) &#123;      </div><div class="line">            progessWidth = endWidth;</div><div class="line">        &#125;</div><div class="line">        // 用来计算弧线长度的变化，前0.7的变化为startAngle从50度逐渐变化为450，sweepAngle固定不变，即为固定的弧长旋转动画</div><div class="line">        if (animatedFraction &lt;= 0.7f) &#123;</div><div class="line">            startAngle = 50 + animatedFraction / 0.7f * 400f;</div><div class="line">            sweepAngle = -100;</div><div class="line">        &#125;</div><div class="line">        // 从0.7~1的动画为startAngle不变，sweepAngle逐渐减小再增大的过程(这个是绘制长度的减小，符号代表绘制圆弧的方向)</div><div class="line">        // 即从-100变到20，从而达到长度开始缩小，并在最后延长一部分的动画</div><div class="line">        if (animatedFraction &gt; 0.7f) &#123;</div><div class="line">            startAngle = 450;</div><div class="line">            sweepAngle = -100 + ((animatedFraction - 0.7f) / 0.25f) * 100;</div><div class="line">        &#125;</div><div class="line">        invalidate();    // 别忘了invalidate触发重绘onDraw</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">// 动态改变颜色</div><div class="line">ObjectAnimator objectAnimator = ObjectAnimator.ofInt(this, &quot;progessColor&quot;, startColor, endColor);</div><div class="line">objectAnimator.setEvaluator(new ArgbEvaluator());</div><div class="line">// 使用AnimatorSet同时执行两种动画</div><div class="line">AnimatorSet animatorSet = new AnimatorSet();</div><div class="line">animatorSet.playTogether(valueAnimator, objectAnimator);</div><div class="line">animatorSet.start();</div></pre></td></tr></table></figure></p>
+<p>上面代码中，0.7f了、0.2f了这些值都是可以自己改的，不同的值效果也会不一样，大家可以自己修改试一下看看效果。先看看这个实现的效果图：<br><img src="http://upload-images.jianshu.io/upload_images/3385056-4b0d21205acc16b8.gif?imageMogr2/auto-orient/strip" alt="loading2.gif"><br>是不是觉得已经ok了呢，nonono，还有最后一步，这个loading动画是循环播放的呢，而且需要倒回去，所以：</p>
+<h5 id="第三步，REVERSE"><a href="#第三步，REVERSE" class="headerlink" title="第三步，REVERSE"></a>第三步，REVERSE</h5><p>这个就很简单了，给动画设置<code>setRepeatMode</code>和<code>setRepeatCount</code>就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">valueAnimator.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">valueAnimator.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line"></div><div class="line">objectAnimator.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">objectAnimator.setRepeatCount(ValueAnimator.INFINITE);</div></pre></td></tr></table></figure></p>
+<p>效果就不贴了，就是本文开头的那个效果。代码虽然很简单，但是重要的还是思路，这东西就跟魔术一样，看到的时候感觉很神奇，但是知道了原理就发现原来就那么回事。</p>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><p>这种动画主要是通过使用<code>valueAnimator</code>在<code>AnimatorUpdateListener</code>中动态的改变需要绘制的图形的属性值，并不断的通过<code>invalidate</code>触发<code>onDraw</code>,从而使得图形在感官上是“动”起来。这样你就可以根据你自己的算法做出各种动画了。我的<a href="http://www.jianshu.com/u/975e915e131b" target="_blank" rel="external">好基友</a>的系列文章也挺不错的，推荐大家一看。当然想要做出这些东西是需要一定的自定义View的基础的，首先你得知道各种Api的使用和细节吧，巧妇还难为无米之炊呢，下面我推荐几个网站：</p>
+<ol>
+<li>我大<a href="https://developer.android.com/reference/android/graphics/Path.html" target="_blank" rel="external">Google的官方文档</a>，Canvas，Path，Paint，PathMeasure，Camera等等一些类的Api总得玩儿转吧，什么？你说英语差？机翻会不。不过还是希望大家没事儿了多背背单词，不能一直靠机翻吧，多low（开玩笑~~~）</li>
+<li>再次推荐<a href="http://hencoder.com/" target="_blank" rel="external">抛物线大大的HenCoder教程</a>，内容不多，但是是精品</li>
+<li><a href="http://www.gcssloop.com/customview/CustomViewIndex" target="_blank" rel="external">GcsSloop的魔法首页</a>，写的非常细，配合<a href="http://hencoder.com/" target="_blank" rel="external">HenCoder</a>食用更加</li>
+</ol>
+<p>就酱，代码很简单，贴下面咯，如果大家觉得ok，那么记得点赞哈，还有，强烈推荐看看我推荐的那几个网站噻。<br>使用下面的代码请记得<strong>关闭硬件加速！！！关闭硬件加速！！！关闭硬件加速！！！</strong>重要的事说三遍，在清单文件的<code>application</code>中加<code>android:hardwareAccelerated=&quot;false&quot;</code>即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div></pre></td><td class="code"><pre><div class="line">package com.moonight.customview;</div><div class="line"></div><div class="line">import android.animation.Animator;</div><div class="line">import android.animation.AnimatorSet;</div><div class="line">import android.animation.ArgbEvaluator;</div><div class="line">import android.animation.ObjectAnimator;</div><div class="line">import android.animation.ValueAnimator;</div><div class="line">import android.content.Context;</div><div class="line">import android.graphics.Canvas;</div><div class="line">import android.graphics.Color;</div><div class="line">import android.graphics.Paint;</div><div class="line">import android.graphics.Path;</div><div class="line">import android.graphics.RectF;</div><div class="line">import android.os.Handler;</div><div class="line">import android.os.Message;</div><div class="line">import android.support.annotation.Nullable;</div><div class="line">import android.util.AttributeSet;</div><div class="line">import android.view.View;</div><div class="line">import android.view.animation.AccelerateDecelerateInterpolator;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by MooNight on 2017/9/11.</div><div class="line"> */</div><div class="line"></div><div class="line">public class CustomProgressView extends View &#123;</div><div class="line"></div><div class="line">    private Paint mPaint;</div><div class="line"></div><div class="line">    private float left = -100;</div><div class="line">    private float top = -100;</div><div class="line">    private float right = 100;</div><div class="line">    private float bottom = 100;</div><div class="line"></div><div class="line">    private float startAngle = 90;</div><div class="line">    private float sweepAngle = -100;</div><div class="line"></div><div class="line">    private int mViewWidthHalf, mViewHeightHalf;        // 获取view的宽高的一半</div><div class="line"></div><div class="line">    private Path arcSrcPath;</div><div class="line">    private Path arcDstPath;</div><div class="line"></div><div class="line">    private int startColor = 0xFF10D2DE;</div><div class="line">    private int endColor = 0xFF1039DD;</div><div class="line">    private int progessColor = startColor;</div><div class="line"></div><div class="line">    private float progessWidth;</div><div class="line">    private float startWidth = 70;</div><div class="line">    private float endWidth = 5;</div><div class="line">    private RectF rectF;</div><div class="line"></div><div class="line"></div><div class="line">    private Handler handler = new Handler() &#123;</div><div class="line">        @Override</div><div class="line">        public void handleMessage(Message msg) &#123;</div><div class="line">            objectAnimator3.start();                //当第阶段动画执行完毕后，执行第二阶段动画</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    private ObjectAnimator objectAnimator3;</div><div class="line">    private Animator.AnimatorListener animatorListener;</div><div class="line"></div><div class="line">    public CustomProgressView(Context context) &#123;</div><div class="line">        this(context, null);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public CustomProgressView(Context context, @Nullable AttributeSet attrs) &#123;</div><div class="line">        this(context, attrs, 0);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public CustomProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</div><div class="line">        super(context, attrs, defStyleAttr);</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    // 提供setter方法，使用ObjectAnimator改变对应的属性值</div><div class="line">    public void setProgessColor(int progessColor) &#123;</div><div class="line">        this.progessColor = progessColor;</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line">    public void setProgessWidth(float progessWidth) &#123;</div><div class="line">        this.progessWidth = progessWidth;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setStartAngle(float startAngle) &#123;</div><div class="line">        this.startAngle = startAngle;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setSweepAngle(float sweepAngle) &#123;</div><div class="line">        this.sweepAngle = sweepAngle;</div><div class="line">        invalidate();                       // 当属性值改变时，调用invalidate出发onDraw回调</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</div><div class="line">        super.onSizeChanged(w, h, oldw, oldh);</div><div class="line">        mViewWidthHalf = w / 2;             // 在onSizeChanged中获取view的宽高值</div><div class="line">        mViewHeightHalf = h / 2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onDraw(Canvas canvas) &#123;</div><div class="line">        super.onDraw(canvas);</div><div class="line">        canvas.drawColor(Color.BLACK);              // 绘制背景</div><div class="line">        canvas.save();</div><div class="line">        canvas.translate(mViewWidthHalf, mViewHeightHalf);      // 将绘制中心坐标(0,0)移动到View中心</div><div class="line"></div><div class="line">        arcSrcPath = new Path();                    // 每次都绘制新的path</div><div class="line">        arcDstPath = new Path();</div><div class="line"></div><div class="line">        arcSrcPath.addArc(rectF, startAngle, sweepAngle);</div><div class="line">        mPaint.setStrokeWidth(startWidth);</div><div class="line">        mPaint.getFillPath(arcSrcPath, arcDstPath);     // 获取实际弧线path的轮廓</div><div class="line">        canvas.clipPath(arcDstPath);                    // 只显示轮廓部分，如果不这么做，会使得出事弧线过宽</div><div class="line"></div><div class="line">        mPaint.setColor(progessColor);</div><div class="line">        mPaint.setStrokeWidth(progessWidth);            // 动态改变paint的颜色跟线宽</div><div class="line">        canvas.drawPath(arcDstPath, mPaint);</div><div class="line"></div><div class="line">        canvas.restore();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void init() &#123;</div><div class="line">        initPaint();</div><div class="line">        initRect();</div><div class="line">        initAnimator();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initAnimator() &#123;</div><div class="line">//        initAnimator1();</div><div class="line"></div><div class="line">        initAnimator2();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 第二种实现方式</div><div class="line">     */</div><div class="line">    private void initAnimator2() &#123;</div><div class="line">        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);</div><div class="line">        valueAnimator.setDuration(2200);</div><div class="line">        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onAnimationUpdate(ValueAnimator animation) &#123;</div><div class="line">                // 获取到当前动画的完成度，取值为0~1</div><div class="line">                float animatedFraction = animation.getAnimatedFraction();</div><div class="line">                // 用来计算线条宽度的变化，前动画的前0.2不改变初始线条宽度，从0.2~0.9，动态的将线条宽度变为最终的宽的endWidth</div><div class="line">                // 0.9~1阶段，宽度始终为最终宽度endWidth</div><div class="line">                progessWidth = startWidth - ((animatedFraction - 0.2f) / 0.7f) * startWidth;</div><div class="line">                // 前0.2的变化会进入这个判断</div><div class="line">                if (progessWidth &gt;= startWidth) &#123;</div><div class="line">                    progessWidth = startWidth;</div><div class="line">                &#125;</div><div class="line">                // 0.9~1时会进这个判断</div><div class="line">                if (progessWidth &lt;= endWidth) &#123;</div><div class="line">                    progessWidth = endWidth;</div><div class="line">                &#125;</div><div class="line">                // 用来计算弧线长度的变化，前0.7的变化为startAngle从50度逐渐变化为450，sweepAngle固定不变，即为固定的弧长旋转动画</div><div class="line">                if (animatedFraction &lt;= 0.7f) &#123;</div><div class="line">                    startAngle = 50 + animatedFraction / 0.7f * 400f;</div><div class="line">                    sweepAngle = -100;</div><div class="line">                &#125;</div><div class="line">                // 从0.7~1的动画为startAngle不变，sweepAngle逐渐减小再增大的过程(这个是绘制长度的减小，符号代表绘制圆弧的方向)</div><div class="line">                // 即从-100变到20，从而达到长度开始缩小，并在最后延长一部分的动画</div><div class="line">                if (animatedFraction &gt;= 0.7f) &#123;</div><div class="line">                    startAngle = 450;</div><div class="line">                    sweepAngle = -100 + ((animatedFraction - 0.7f) / 0.25f) * 100;</div><div class="line">                &#125;</div><div class="line">                invalidate();     // 别忘了invalidate触发重绘onDraw</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        // 动态改变颜色</div><div class="line">        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(this, &quot;progessColor&quot;, startColor, endColor);</div><div class="line">        objectAnimator.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">        objectAnimator.setEvaluator(new ArgbEvaluator());</div><div class="line">        objectAnimator.setDuration(2200);</div><div class="line"></div><div class="line">        AnimatorSet animatorSet = new AnimatorSet();</div><div class="line">        animatorSet.playTogether(valueAnimator, objectAnimator);</div><div class="line">        animatorSet.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 第一种实现方式</div><div class="line">     */</div><div class="line">    private void initAnimator1() &#123;</div><div class="line">        initObjectAnimatorListener();</div><div class="line">        initObjectAnimator();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initObjectAnimatorListener() &#123;</div><div class="line">        animatorListener = new Animator.AnimatorListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onAnimationStart(Animator animation) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationEnd(Animator animation) &#123;</div><div class="line">                handler.sendEmptyMessage(0);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationCancel(Animator animation) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void onAnimationRepeat(Animator animation) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initObjectAnimator() &#123;</div><div class="line">        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(this, &quot;progessColor&quot;, startColor, endColor);</div><div class="line">//        objectAnimator.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">//        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">        objectAnimator.setEvaluator(new ArgbEvaluator());</div><div class="line">        objectAnimator.addListener(animatorListener);</div><div class="line">        objectAnimator.setDuration(2000);</div><div class="line"></div><div class="line">        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(this, &quot;progessWidth&quot;, startWidth, endWidth);</div><div class="line">//        objectAnimator1.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">//        objectAnimator1.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">        objectAnimator1.setDuration(2000);</div><div class="line"></div><div class="line">        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(this, &quot;startAngle&quot;, startAngle, startAngle + 360);</div><div class="line">        objectAnimator2.setInterpolator(new AccelerateDecelerateInterpolator());</div><div class="line">//        objectAnimator2.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">//        objectAnimator2.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">        objectAnimator2.setDuration(2000);</div><div class="line"></div><div class="line">        objectAnimator3 = objectAnimator.ofFloat(this, &quot;sweepAngle&quot;, sweepAngle - 2, 10, 0, -10);</div><div class="line">        objectAnimator3.setDuration(3000);</div><div class="line"></div><div class="line">        AnimatorSet animatorSet = new AnimatorSet();</div><div class="line">        animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2);</div><div class="line">        animatorSet.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initRect() &#123;</div><div class="line">        rectF = new RectF(left, top, right, bottom);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void initPaint() &#123;</div><div class="line">        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</div><div class="line">        mPaint.setStyle(Paint.Style.STROKE);</div><div class="line">        mPaint.setStrokeCap(Paint.Cap.ROUND);      // 线端点处设置会圆头</div><div class="line">        mPaint.setStrokeWidth(startWidth);</div><div class="line">        mPaint.setColor(startColor);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CustomView/" rel="tag"># CustomView</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/vue笔记/" rel="next" title="vue笔记">
+                <i class="fa fa-chevron-left"></i> vue笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://or3r57zhy.bkt.clouddn.com/avatar.jpg"
+               alt="MooNight" />
+          <p class="site-author-name" itemprop="name">MooNight</p>
+          <p class="site-description motion-element" itemprop="description">夏虫不可以语冰，井蛙不可以语海，凡夫不可以语道</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步，画圆弧"><span class="nav-number">1.</span> <span class="nav-text">第一步，画圆弧</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步，执行动画"><span class="nav-number">2.</span> <span class="nav-text">第二步，执行动画</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#第一种方式"><span class="nav-number">2.1.</span> <span class="nav-text">第一种方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第二种方式"><span class="nav-number">2.2.</span> <span class="nav-text">第二种方式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步，REVERSE"><span class="nav-number">3.</span> <span class="nav-text">第三步，REVERSE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结一下"><span class="nav-number"></span> <span class="nav-text">总结一下</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MooNight</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
